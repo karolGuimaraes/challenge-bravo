@@ -1,6 +1,4 @@
-# from django.shortcuts import render
 from conversor.models import CurrencyConversion
-# from rest_framework.views import APIView
 from rest_framework.response import Response
 from conversor.serializers import CurrencyConversionSerializer
 from rest_framework import status
@@ -11,16 +9,15 @@ import datetime
 from datetime import timedelta 
 from decimal import Decimal
 from django.utils import timezone
-
 from rest_framework.renderers import JSONRenderer
-
 from rest_framework.decorators import api_view, throttle_classes, renderer_classes
+from django.views.decorators.cache import cache_page
 
 
 class OncePerDayUserThrottle(UserRateThrottle):
     rate = '1500/second'
-
-
+    
+@cache_page(60 * 15)
 @throttle_classes([UserRateThrottle])
 @api_view(['GET'])
 @renderer_classes([JSONRenderer])
@@ -41,7 +38,6 @@ def currency_conversion(request, format=None):
                 currency_conversion = coin_price(data)
 
             data.update(value = str(Decimal(data['amount']) * Decimal(data['price'])))
-            #serializer = CurrencyConversionSerializer(currency_conversion, context=data)
             return Response(data, status=status.HTTP_200_OK)
         else:
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
