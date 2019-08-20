@@ -108,10 +108,9 @@ Resposta:
 **Teste de estresse**
 Para o teste foi utilizado o wrk.
 - Com o servidor rodando execute: 
--- wrk -t10 -c1000 -d30s 'http://127.0.0.1:8000/?from=BRL&to=BTC&amount=1'
--- Se for necessário brew install wrk ou sudo apt-get install wrk
+-- wrk -t10 -c1000 -d30s 'http://localhost:8000/?from=BRL&to=BTC&amount=1'
+-- Se for necessário  brew install wrk ou sudo apt-get install wrk, para instalar o wrk.
 
 
-Resposta:
 
 
