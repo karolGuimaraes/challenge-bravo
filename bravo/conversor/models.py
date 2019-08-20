@@ -6,11 +6,11 @@ class CurrencyConversion(models.Model):
                       (u'EUR', u'Euro'),
                       (u'BTC', u'Bitcoin'),
                       (u'ETH', u'Ethereum'),)
-    original_currency = models.CharField(max_length=3, choices=code_choices)
+    from_currency = models.CharField(max_length=3, choices=code_choices)
     lower_value = models.DecimalField(max_digits=10, decimal_places=8, default=0.00)
     higher_value = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     date = models.DateTimeField()
-    destination_currency = models.CharField(max_length=3, choices=code_choices)
+    to_currency = models.CharField(max_length=3, choices=code_choices)
 
     @property
     def value(self):

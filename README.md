@@ -56,6 +56,62 @@ Quaisquer dúvidas que você venha a ter, consulte as [_issues_](https://github.
 
 Boa sorte e boa viagem! ;)
 
-<p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
-</p>
+
+
+
+_______________________________
+## Solução proposta
+
+- Foi desenvolvida a api com Django REST.
+- Para a taxas de câmbio, foi usado a api CryptoCompare. Onde a taxa é salva no banco, e não é solicitada se a próxima consulta for no tempo menor que 30 minutos.
+
+##Funcionamento
+Acessando (  http://localhost:8000/?from=BRL&to=BTC&amount=900 ), onde:
+ - from = É a moeda de origem;
+ - to = É a moeda de destino;
+ - amount  = É o valor que será convertido.
+ 
+ 
+ Ele deverá retornar:
+ {
+    "price": "0.00002572",
+    "value": "0.02314800",
+    "to_currency": "BTC",
+    "from_currency": "BRL",
+    "amount": "900"
+}
+
+Onde  **price** é o valor da moeda e **value** é o valor final convertido.
+ 
+
+##Configurando o ambiente
+1 - Clonar o projeto
+2 - Acesse a pasta /bravo
+3 - docker-compose up
+
+##Teste
+**Teste unitários**
+Para executa o teste, -- docker-compose run app python manage.py test
+
+Resposta:
+
+	Creating test database for alias 'default'...
+	System check identified no issues (0 silenced).
+	....3.761 3.761
+	.
+	----------------------------------------------------------------------
+	Ran 5 tests in 1.651s
+
+	OK
+	Destroying test database for alias 'default'...
+
+**Teste de estresse**
+Para o teste foi utilizado o wrk.
+- Com o servidor rodando execute: 
+-- wrk -t10 -c1000 -d30s 'http://127.0.0.1:8000/?from=BRL&to=BTC&amount=1'
+-- Se for necessário brew install wrk ou sudo apt-get install wrk
+
+
+Resposta:
+
+
