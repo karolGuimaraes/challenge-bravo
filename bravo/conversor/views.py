@@ -1,6 +1,5 @@
 from conversor.models import CurrencyConversion
 from rest_framework.response import Response
-from conversor.serializers import CurrencyConversionSerializer
 from rest_framework import status
 import requests
 import json
@@ -17,7 +16,7 @@ from django.views.decorators.cache import cache_page
 class OncePerDayUserThrottle(UserRateThrottle):
     rate = '1500/second'
     
-@cache_page(60 * 15)
+@cache_page(60 * 2)
 @throttle_classes([UserRateThrottle])
 @api_view(['GET'])
 @renderer_classes([JSONRenderer])

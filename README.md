@@ -85,15 +85,18 @@ Onde  **price** é o valor da moeda e **value** é o valor final convertido.
  
 
 ##Configurando o ambiente
-1 - Clonar o projeto
-2 - Acesse a pasta /bravo
-3 - docker-compose up
+1 - Clonar o projeto:
+	`git clone https://github.com/karolGuimaraes/challenge-bravo.git`
+2 -  Acesse a pasta /bravo
+3 - Executar:
+	`docker-compose up`
 
 ##Teste
 **Teste unitários**
-Para executa o teste, -- docker-compose run app python manage.py test
+Para executa o teste:
+	`docker-compose run app python manage.py test`
 
-Resposta:
+Resposta similar:
 
 	Creating test database for alias 'default'...
 	System check identified no issues (0 silenced).
@@ -106,11 +109,20 @@ Resposta:
 	Destroying test database for alias 'default'...
 
 **Teste de estresse**
-Para o teste foi utilizado o wrk.
-- Com o servidor rodando execute: 
--- wrk -t10 -c1000 -d30s 'http://localhost:8000/?from=BRL&to=BTC&amount=1'
+Para o teste foi utilizado o wrk, com o servidor rodando execute:
+`wrk -t10 -c1000 -d30s 'http://localhost:8000/?from=BRL&to=BTC&amount=1'`
 -- Se for necessário  brew install wrk ou sudo apt-get install wrk, para instalar o wrk.
 
+Resposta similar:
+
+	Running 30s test @ http://localhost:8000/?from=BRL&to=BTC&amount=1
+  	8 threads and 1000 connections
+ 	 Thread Stats   Avg      Stdev     Max   +/- Stdev
+    	Latency   108.85ms   23.19ms 311.93ms   80.52%
+    	Req/Sec   133.37    111.01   490.00     82.91%
+ 	 31842 requests in 30.08s, 10.99MB read
+	Requests/sec:   1058.69
+	Transfer/sec:    374.29KB
 
 
 
