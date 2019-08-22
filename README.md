@@ -66,6 +66,7 @@ _______________________________
 - Para a taxas de câmbio, foi usado a api CryptoCompare. Onde a taxa é salva no banco, e não é solicitada se a próxima consulta for no tempo menor que 30 minutos.
 
 ##Funcionamento
+
 Acessando (  http://localhost:8000/?from=BRL&to=BTC&amount=900 ), onde:
  - from = É a moeda de origem;
  - to = É a moeda de destino;
@@ -83,8 +84,20 @@ Acessando (  http://localhost:8000/?from=BRL&to=BTC&amount=900 ), onde:
 
 Onde  **price** é o valor da moeda e **value** é o valor final convertido.
  
+ ##Retorno
+ 
+| Status   |  Descrição  |
+| ------------ | ------------ |
+|  200 | ok - sucesso   |
+|  400  | Erro nos parâmetros |
+| 500 | Falha interna no sistema ou na api do cryptocompare  |
+
+
+
+ 
 
 ##Configurando o ambiente
+
 1 - Clonar o projeto:
 	`git clone https://github.com/karolGuimaraes/challenge-bravo.git`
 2 -  Acesse a pasta /bravo
@@ -92,6 +105,7 @@ Onde  **price** é o valor da moeda e **value** é o valor final convertido.
 	`docker-compose up`
 
 ##Teste
+
 **Teste unitários**
 Para executa o teste:
 	`docker-compose run app python manage.py test`
@@ -108,7 +122,9 @@ Resposta similar:
 	OK
 	Destroying test database for alias 'default'...
 
+
 **Teste de estresse**
+
 Para o teste foi utilizado o wrk, com o servidor rodando execute:
 `wrk -t10 -c1000 -d30s 'http://localhost:8000/?from=BRL&to=BTC&amount=1'`
 -- Se for necessário  brew install wrk ou sudo apt-get install wrk, para instalar o wrk.
