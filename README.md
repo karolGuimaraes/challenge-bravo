@@ -65,7 +65,7 @@ _______________________________
 - Foi desenvolvida a api com Django REST.
 - Para a taxas de câmbio, foi usado a api CryptoCompare. Onde a taxa é salva no banco, e não é solicitada se a próxima consulta for no tempo menor que 30 minutos.
 
-##Funcionamento
+## Funcionamento
 
 Acessando (  http://localhost:8000/?from=BRL&to=BTC&amount=900 ), onde:
  - from = É a moeda de origem;
@@ -84,7 +84,7 @@ Acessando (  http://localhost:8000/?from=BRL&to=BTC&amount=900 ), onde:
 
 Onde  **price** é o valor da moeda e **value** é o valor final convertido.
  
- ##Retorno
+ ## Retorno
  
 | Status   |  Descrição  |
 | ------------ | ------------ |
@@ -96,18 +96,20 @@ Onde  **price** é o valor da moeda e **value** é o valor final convertido.
 
  
 
-##Configurando o ambiente
+## Configurando o ambiente
 
-1 - Clonar o projeto:
+ - Clonar o projeto:
 	`git clone https://github.com/karolGuimaraes/challenge-bravo.git`
-2 -  Acesse a pasta /bravo
-3 - Executar:
+
+- Acesse a pasta /bravo
+
+- Executar:
 	`docker-compose up`
 
-##Teste
+## Teste
 
 **Teste unitários**
-Para executa o teste:
+ 	Para executa o teste:
 	`docker-compose run app python manage.py test`
 
 Resposta similar:
@@ -127,7 +129,7 @@ Resposta similar:
 
 Para o teste foi utilizado o wrk, com o servidor rodando execute:
 `wrk -t10 -c1000 -d30s 'http://localhost:8000/?from=BRL&to=BTC&amount=1'`
--- Se for necessário  brew install wrk ou sudo apt-get install wrk, para instalar o wrk.
+- Se for necessário  brew install wrk ou sudo apt-get install wrk, para instalar o wrk.
 
 Resposta similar:
 
